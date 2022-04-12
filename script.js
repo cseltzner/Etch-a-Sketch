@@ -5,6 +5,7 @@ const radioSizeLarge = document.getElementById('radio-size-large');
 const radioColorSmall = document.getElementById('radio-color-small');
 const radioColorMed = document.getElementById('radio-color-med');
 const radioColorLarge = document.getElementById('radio-color-large');
+const clearBtn = document.getElementById('clear-button');
 
 const smallNumDivs = 64;
 const medNumDivs = 121;
@@ -42,18 +43,21 @@ radioSizeLarge.addEventListener('change', function() {
 
 window.addEventListener('resize', function() {
     clearGeneratedDivs();
-    initDivs(numDivs)
+    initDivs(numDivs);
+});
+
+clearBtn.addEventListener('click', function() {
+    clearGeneratedDivs();
+    initDivs(numDivs);
 })
 
 function initDivs(numberOfDivs) {
-    const divSize = (gridContainer.clientHeight) / Math.sqrt(numberOfDivs);
-    console.log(gridContainer.clientWidth);
-    console.log(divSize)
+    const divSize = 100 / Math.sqrt(numberOfDivs);
     for (let i = 0; i < numberOfDivs; i++) {
         const div = document.createElement('div');
         div.classList.add('grid-div');
-        div.style.width = `${divSize}px`;
-        div.style.height = `${divSize}px`;
+        div.style.width = `${divSize}%`;
+        div.style.height = `${divSize}%`;
         div.style.borderRight = '1px solid gray';
         div.style.borderTop = '1px solid gray';
         div.addEventListener('pointerenter', function() {
