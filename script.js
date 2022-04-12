@@ -40,14 +40,22 @@ radioSizeLarge.addEventListener('change', function() {
     initDivs(largeNumDivs);
 });
 
+window.addEventListener('resize', function() {
+    clearGeneratedDivs();
+    initDivs(numDivs)
+})
+
 function initDivs(numberOfDivs) {
-    const divSize = gridContainer.clientHeight / Math.sqrt(numberOfDivs);
+    const divSize = (gridContainer.clientHeight) / Math.sqrt(numberOfDivs);
+    console.log(gridContainer.clientWidth);
+    console.log(divSize)
     for (let i = 0; i < numberOfDivs; i++) {
         const div = document.createElement('div');
         div.classList.add('grid-div');
         div.style.width = `${divSize}px`;
         div.style.height = `${divSize}px`;
-        div.style.border = '1px solid gray';
+        div.style.borderRight = '1px solid gray';
+        div.style.borderTop = '1px solid gray';
         div.addEventListener('pointerenter', function() {
             updateRGB(15, 10, 20);
             div.style.backgroundColor = `rgb(${r},${g},${b})`;
